@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Questao1.Extensoes;
+using System;
 using System.Globalization;
 
 namespace Questao1 {
@@ -24,21 +25,21 @@ namespace Questao1 {
 
             Console.WriteLine();
             Console.WriteLine("Dados da conta:");
-            Console.WriteLine(conta);
+            Console.WriteLine(MostrarDadosDaConta(conta));
 
             Console.WriteLine();
             Console.Write("Entre um valor para depósito: ");
             double quantia = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             conta.Deposito(quantia);
             Console.WriteLine("Dados da conta atualizados:");
-            Console.WriteLine(conta);
+            Console.WriteLine(MostrarDadosDaConta(conta));
 
             Console.WriteLine();
             Console.Write("Entre um valor para saque: ");
             quantia = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             conta.Saque(quantia);
             Console.WriteLine("Dados da conta atualizados:");
-            Console.WriteLine(conta);
+            Console.WriteLine(MostrarDadosDaConta(conta));
 
             /* Output expected:
             Exemplo 1:
@@ -75,6 +76,11 @@ namespace Questao1 {
             Dados da conta atualizados:
             Conta 5139, Titular: Elza Soares, Saldo: $ -1.50
             */
+        }
+
+        private static string MostrarDadosDaConta(ContaBancaria conta)
+        {
+            return $"Conta: {conta.Numero}, Titular: {conta.Titular}, Saldo: {conta.Saldo.ToMoney()}";
         }
     }
 }
