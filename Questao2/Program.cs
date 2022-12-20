@@ -1,6 +1,6 @@
 ﻿using Questao1.Extensions;
-using Questao2;
 using Questao2.Enums;
+using Questao2.Models;
 using System.Net.Http.Json;
 
 public class Program
@@ -30,6 +30,7 @@ public class Program
         HttpClient clientHttp = new HttpClient();
         int goals = 0;
   
+        //soma os gols como mandante
         var hostResult = await GetMatches(clientHttp, team, year, 1, CommandEnum.Host);
         goals += SumGoalsHost(hostResult);
 
@@ -40,6 +41,7 @@ public class Program
                 goals += SumGoalsHost(hostResultPages);
             }
 
+        //soma os gols como visitante
         var visitorResult = await GetMatches(clientHttp, team, year, 1, CommandEnum.Visitor);
         goals += SumGoalsVisitor(visitorResult);
 
@@ -68,7 +70,7 @@ public class Program
         var match = await clientHttp.GetFromJsonAsync<MatchPagined>($"{URL_BASE}?year={year}&team{(int)command}={team}&page={page}");
         if (match == null)
         {
-            throw new NullReferenceException("Match not found!");
+            throw new NullReferenceException("Matches not found!");
         }
         return match;
     }

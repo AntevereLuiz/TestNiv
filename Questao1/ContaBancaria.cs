@@ -19,7 +19,7 @@
 
         //Só é possível atribuir o valor no constrututor.
         //Requisito: Após a conta ser aberta, o número da conta nunca poderá ser alterado. 
-        public readonly int Numero;
+        public int Numero { get; }
         public string Titular { get; private set; }
 
         //private set para impedir que o saldo seja modificado livremente.

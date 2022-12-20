@@ -1,4 +1,4 @@
-﻿namespace Questao2
+﻿namespace Questao2.Models
 {
     public class MatchPagined
     {
